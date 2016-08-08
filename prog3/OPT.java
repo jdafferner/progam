@@ -19,13 +19,13 @@ public class OPT extends Algorithm {
 	public void compute() {
 		pageCount = 0;
 		for(int inc = 0; inc < nr; inc++) {
-			if(pageCount < nf) {
-				pageTable.add(inc, references.get(inc));
+			if(pageTable.contains(references.get(inc))) {
+				continue;
+			}
+			else if(pageCount < nf) {
+				pageTable.add(pageCount, references.get(inc));
 				pageCount++;
 				pageFault++;
-			}
-			else if(pageTable.contains(references.get(inc))) {
-				continue;
 			}
 			else {
 				/* index of the page table to be replaced */
@@ -39,7 +39,7 @@ public class OPT extends Algorithm {
 				/* copy of the current reference string */
 				int currentRefString[] = new int[nr-inc];
 				for (int i = 0; i < nr - inc; i++) {
-					currentRefString[i] = references.get(nr-inc);
+					currentRefString[i] = references.get(inc+i);
 				}
 				/* fill the second row of the matrix with the amount of iterations until finding the corresponding
 				 * first row's page number. If the reference is not found, currentPageTable[i][1] remains -1
@@ -49,6 +49,7 @@ public class OPT extends Algorithm {
 					for (int j = 0; j < currentRefString.length; j++) {
 						if ( currentPageTable[i][0] == currentRefString[j] ) {
 							currentPageTable[i][1] = lastRef;
+							break;
 						}
 						else {
 							lastRef++;
@@ -65,11 +66,12 @@ public class OPT extends Algorithm {
 					}
 					/* otherwise, find the page with the furthest reference point to replace */
 					else if (currentPageTable[i][1] >= lastRef) {
+						lastRef = currentPageTable[i][1];
 						index = i;
 					}
 				}
 				/* replace the page table entry */
-				pageTable.add(index, references.get(inc));
+				pageTable.set(index, references.get(inc));
 				/* log the fault */
 				pageFault++;
 			}
