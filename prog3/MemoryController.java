@@ -36,6 +36,8 @@ public class MemoryController {
 	
 	private void parseInput() throws IOException {
 		nf = in.nextInt();
+		if(nf == 0)
+			throw new IOException();
 		np = in.nextInt();
 		nr = in.nextInt();
 		s = in.nextInt();
