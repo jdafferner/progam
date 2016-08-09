@@ -18,6 +18,14 @@ public class FIFO extends Algorithm {
 		if(pageTable.contains(references.get(inc))){
 			continue;
 		}
+		else if(pageCount < nf){
+			pageTable.add(pageCount, references.get(inc));
+			pageCount++;
+			pageFault++;	
+		}
+		else{
+			
+		}
 		
 
 	}
