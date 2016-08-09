@@ -1,15 +1,24 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class FIFO extends Algorithm {
-
+	
+	private int pageCount;
+	private int pageFault;
+	List<Integer> pageTable;
+	
 	public FIFO(int nf, int np, int nr, List references) {
 		super(nf, np, nr, references);
-		// TODO Auto-generated constructor stub
+		pageTable = new ArrayList<Integer>(nf);
 	}
 
 	@Override
 	public void compute() {
-		// TODO Auto-generated method stub
+		pageCount = 0;
+		if(pageTable.contains(references.get(inc))){
+			continue;
+		}
+		
 
 	}
 
