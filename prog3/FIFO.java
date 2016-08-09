@@ -16,8 +16,6 @@ public class FIFO extends Algorithm {
 	@Override
 	public void compute() {
 		pageCount = 0;
-		for(int inc = 0; inc < nr; inc++){
-		pageCount = 0;
 		for(int i = 0; i < nr; i++){
 			if(pageTable.contains(references.get(i))) { //hit
 				//System.out.printf("Hit on %d\n", references.get(i));
