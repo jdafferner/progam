@@ -6,6 +6,7 @@ public class FIFO extends Algorithm {
 	
 	private int pageCount;
 	private int pageFault;
+	private double faultRate;
 	List<Integer> pageTable;
 	
 	public FIFO(int nf, int np, int nr, List references) {
