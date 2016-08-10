@@ -4,10 +4,10 @@ public class LRU extends Algorithm {
 
 	private int pageCount;
 	private int pageFault;
-	private double faultRate;
+	private double faultRate = 0;
 	List<Integer> pageTable;
 	
-	public FIFO(int nf, int np, int nr, List references) {
+	public LRU(int nf, int np, int nr, List references) {
 		super(nf, np, nr, references);
 		pageTable = new ArrayList<Integer>(nf);
 	}
