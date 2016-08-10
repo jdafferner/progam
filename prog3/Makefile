@@ -6,8 +6,8 @@ JC = javac
         $(JC) $(JFLAGS) $*.java
 
 CLASSES = \
-		OPT.java \
-		LRU.java \
+	OPT.java \
+	LRU.java \
         FIFO.java \
         Algorithm.java \
         MemoryController.java \
