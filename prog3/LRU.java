@@ -9,14 +9,45 @@ public class LRU extends Algorithm {
 
 	@Override
 	public void compute() {
-		// TODO Auto-generated method stub
+		int duration[];
+		duration = new int[nf];
+		pageCount = 0;
+		for(int i = 0; i < nr; i++){
+			for(int j = 0; j < nf; j++){
+				duration[j]++;
+			}
+			if(pageTable.contains(references.get(i))){
+				int l = pageTable.indexOf(references.get(i));
+				duration[l] = 0;
+				continue;
+			}
+			else if(pageCount < nf){
+				pageTable.add(references.get(i));
+				duration[pageCount] = 0;
+				pageCount++;
+				pageFault++;
+			}
+			else{
+				int max = 0;
+				for(int j = 0; j < nf; j++){
+					if(duration[j] > duration[max]){
+						max = j;
+					}
+				}
+					pageTable.remove(max);
+					pageTable.add(references.get(i));
+					duration[max] = 0;
+					pageFault++;
+				}
+			}
+		faultRate = (double)pageFault / (double)nr;
+		print();b
 
 	}
 
 	@Override
 	public void print() {
-		// TODO Auto-generated method stub
-
+		System.out.printf("\tLRU: %d faults, fault rate = %.3f\n", pageFault, faultRate);
 	}
 
 }
