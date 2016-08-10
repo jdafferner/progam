@@ -41,7 +41,7 @@ public class LRU extends Algorithm {
 				}
 			}
 		faultRate = (double)pageFault / (double)nr;
-		print();b
+		print();
 
 	}
 
