@@ -2,9 +2,14 @@ import java.util.List;
 
 public class LRU extends Algorithm {
 
-	public LRU(int nf, int np, int nr, List references) {
+	private int pageCount;
+	private int pageFault;
+	private double faultRate;
+	List<Integer> pageTable;
+	
+	public FIFO(int nf, int np, int nr, List references) {
 		super(nf, np, nr, references);
-		// TODO Auto-generated constructor stub
+		pageTable = new ArrayList<Integer>(nf);
 	}
 
 	@Override
